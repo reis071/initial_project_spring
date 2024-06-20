@@ -1,12 +1,22 @@
 package com.example.project_spring.entities;
 
-public class User {
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+
+@Entity
+@Table(name = "tb_user")
+public class User implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
     private String email;
     private String password;
 
     public User() {}
+
 
     public User(Long id,String userName, String email, String password) {
         this.id = id;
