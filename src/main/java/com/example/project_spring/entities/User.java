@@ -1,12 +1,30 @@
 package com.example.project_spring.entities;
 
-public class User {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import com.example.project_spring.entities.Order;
+
+@Entity
+@Table(name = "tb_user")
+public class User implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
     private String email;
     private String password;
 
+
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+
     public User() {}
+
 
     public User(Long id,String userName, String email, String password) {
         this.id = id;
@@ -45,5 +63,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 }
