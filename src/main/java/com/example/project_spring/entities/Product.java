@@ -21,7 +21,10 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient
+    @ManyToMany
+    @JoinTable( name = "tb_product_category",
+                joinColumns = @JoinColumn(name = "id_product"),
+                inverseJoinColumns = @JoinColumn(name = "id_category"))
     private Set<Category> categories = new HashSet<>();
 
 

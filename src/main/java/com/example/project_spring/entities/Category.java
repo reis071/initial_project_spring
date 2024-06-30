@@ -18,7 +18,7 @@ public class Category implements Serializable {
 
     private String nameCategory;
 
-    @Transient
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category(){}
