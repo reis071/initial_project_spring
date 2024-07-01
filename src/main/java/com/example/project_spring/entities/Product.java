@@ -1,5 +1,6 @@
 package com.example.project_spring.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -21,6 +22,7 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable( name = "tb_product_category",
                 joinColumns = @JoinColumn(name = "id_product"),
